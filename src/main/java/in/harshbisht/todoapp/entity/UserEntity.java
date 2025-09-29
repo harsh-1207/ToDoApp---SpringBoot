@@ -7,22 +7,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "tbl_todos")
+@Table(name = "tbl_users")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ToDoEntity {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private UserEntity user;
+    @Column(unique = true, nullable = false)
+    private String username;
 
-    @Column(nullable = false, unique = true)
-    private String title;
-
-    private Boolean completed;
+    @Column(nullable = false)
+    private String password;
 }
